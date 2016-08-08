@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79561B48-B51D-4E82-81E6-092E35ADA2F7}</ProjectGuid>
+    <ProjectGuid>{6BAAE56B-EFF2-45A6-9EC0-A69588C2E81D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Stock.Packages</RootNamespace>
-    <AssemblyName>Stock.Packages</AssemblyName>
+    <RootNamespace>Marketing.BusinessIntelligence</RootNamespace>
+    <AssemblyName>Marketing.BusinessIntelligence</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\PackagesService.cs" />
+    <Compile Include="Application\BusinessIntelligenceService.cs" />
     <Compile Include="Infrastructure\EndpointConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
