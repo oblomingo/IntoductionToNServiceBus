@@ -1,6 +1,6 @@
-﻿namespace Stock.Messages.Events
+﻿namespace Stock.Messages.Commands
 {
-    public class OutOfStock
+    public class PreparePackageCmd
     {
         public int OrderId { get; set; }
         public int ProductId { get; set; }

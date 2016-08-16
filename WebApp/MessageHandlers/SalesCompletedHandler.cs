@@ -8,7 +8,7 @@ namespace WebApp.MessageHandlers
     {
         public void Handle(SaleCompleted message)
         {
-            OrderController.PaymentAcceptedOrderQueue.Enqueue(message);
+            OrderController.SaleCompletedQueue.Enqueue(message);
         }
     }
 }

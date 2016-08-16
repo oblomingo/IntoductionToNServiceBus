@@ -8,5 +8,8 @@ namespace Sales.Messages.Events
 {
     public class SaleCompleted
     {
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -49,12 +49,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\DeliveryService.cs" />
+    <Compile Include="Infrastructure\CustomerRepository.cs" />
     <Compile Include="Infrastructure\EndpointConfig.cs" />
+    <Compile Include="Infrastructure\ShippingProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logistics.Messages\Logistic.Messages.csproj">
+      <Project>{5b0ce910-db90-4ae4-82c0-05241117150b}</Project>
+      <Name>Logistic.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj">
+      <Project>{f025ac8c-9661-48a3-a1b5-aff376cfafc8}</Project>
+      <Name>Sales.Messages</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

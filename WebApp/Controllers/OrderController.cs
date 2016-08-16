@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using Sales.Messages.Commands;
 using Sales.Messages.Events;
@@ -12,7 +10,7 @@ namespace WebApp.Controllers
 {
     public class OrderController : Controller
     {
-        public static Queue<SaleCompleted> PaymentAcceptedOrderQueue = new Queue<SaleCompleted>();
+        public static Queue<SaleCompleted> SaleCompletedQueue = new Queue<SaleCompleted>();
 
         public ActionResult Index()
         {
@@ -40,9 +38,9 @@ namespace WebApp.Controllers
             return base.Json(data, contentType, contentEncoding, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult PaymentAcceptedOrders()
+        public ActionResult SaleCompletedOrders()
         {
-            return Json(PaymentAcceptedOrderQueue.ToArray());
+            return Json(SaleCompletedQueue.ToArray());
         }
 
         private int GetUserId()

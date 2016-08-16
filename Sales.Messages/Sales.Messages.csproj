@@ -45,11 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\PlaceOrderCmd.cs" />
+    <Compile Include="Commands\SendPackageCmd.cs" />
     <Compile Include="Events\OrderCreated.cs" />
     <Compile Include="Events\SaleCompleted.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Stock.Messages\Stock.Messages.csproj">
+      <Project>{86411f72-fb5e-466f-a81d-2c426b7a296f}</Project>
+      <Name>Stock.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

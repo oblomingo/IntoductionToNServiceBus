@@ -44,13 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\PreparePackageCmd.cs" />
+    <Compile Include="Dto\PackageSize.cs" />
     <Compile Include="Events\OutOfStock.cs" />
-    <Compile Include="Events\PackagePrepaired.cs" />
+    <Compile Include="Events\PackagePrepared.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
