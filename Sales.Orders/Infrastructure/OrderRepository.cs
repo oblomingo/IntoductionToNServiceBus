@@ -1,34 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Sales.Orders.Domain;
+﻿using Sales.Orders.Domain;
 
 namespace Sales.Orders.Infrastructure
 {
     public class OrderRepository
     {
-        private readonly List<Order> _orders = new List<Order>(); 
-        private int _id = 0;
+        private int _id = 1;
         public int SaveOrder(int productId, int userId, int shippingTypeId)
         {
-            _id++;
-            var newOrder = new Order(_id)
-                .ToUser(userId)
-                .WithProduct(productId)
-                .Using(shippingTypeId);
-
-            _orders.Add(newOrder);
             return _id;
         }
 
         public void ChangeOrderStatus(int orderId, int orderStatus)
         {
-            var order = _orders.SingleOrDefault(o => o.OrderId == orderId);
-            order?.ChangeStatus(orderStatus);
+            //Some logic to change order status
         }
 
         public Order GetOrderBy(int orderId)
         {
-            return _orders.SingleOrDefault(o => o.OrderId == orderId);
+            //Mock order objext
+            return new Order(orderId).ToUser(12).WithProduct(1).WithProduct(2);
         }
     }
 }

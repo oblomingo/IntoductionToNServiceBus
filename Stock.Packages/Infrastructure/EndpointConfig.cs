@@ -4,7 +4,7 @@ using NServiceBus;
 namespace Stock.Packages.Infrastructure
 {
     [EndpointName("Stock.Packages")]
-    public class EndpointConfig : IConfigureThisEndpoint
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
         public void Customize(BusConfiguration configuration)
         {

@@ -1,8 +1,9 @@
-﻿using Stock.Messages.Dto;
+﻿using NServiceBus;
+using Stock.Messages.Dto;
 
-namespace Sales.Messages.Commands
+namespace Logistic.Messages.Commands
 {
-    public class SendPackageCmd
+    public class SendPackageCmd : ICommand
     {
         public int OrderId { get; set; }
         public int PackageId { get; set; }

@@ -1,8 +1,8 @@
 ﻿using Logistic.Deliveries.Infrastructure;
-using Logistics.Messages.Events;
+using Logistic.Messages.Commands;
+using Logistic.Messages.Events;
 using NServiceBus;
 using NServiceBus.Logging;
-using Sales.Messages.Commands;
 
 namespace Logistic.Deliveries.Application
 {
@@ -27,7 +27,7 @@ namespace Logistic.Deliveries.Application
                 OrderId = message.OrderId,
                 PackageId = message.PackageId
             };
-            Bus.Send(packageSent);
+            Bus.Publish(packageSent);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
-using Logistics.Messages.Events;
+using Logistic.Messages.Commands;
+using Logistic.Messages.Events;
 using NServiceBus;
 using NServiceBus.Logging;
 using Sales.Messages.Commands;
@@ -11,12 +12,16 @@ using Stock.Messages.Events;
 
 namespace Sales.Orders.Application
 {
-    public class OrderService : IHandleMessages<PlaceOrderCmd>, IHandleMessages<PackagePrepared>, IHandleMessages<OutOfStock>, IHandleMessages<PackageSent>
+    public class OrderService : IHandleMessages<PlaceOrderCmd>, 
+        IHandleMessages<PackagePrepared>, 
+        IHandleMessages<OutOfStock>, 
+        IHandleMessages<PackageSent>
     {
         private readonly ILog _log;
         private readonly OrderRepository _orderRepository;
         public OrderService()
         {
+            var guid = Guid.NewGuid();
             _orderRepository = new OrderRepository();
             _log = LogManager.GetLogger(typeof(OrderService));
         }
@@ -66,13 +71,13 @@ namespace Sales.Orders.Application
             _orderRepository.ChangeOrderStatus(message.OrderId, (int)Enums.OrderStatuses.Complete);
 
             var order = _orderRepository.GetOrderBy(message.OrderId);
-            SaleCompleted saleCompleted = new SaleCompleted
+            var saleCompleted = new SaleCompleted
             {
                 UserId = order.UserId,
                 ProductId = order.ProductId,
                 Date = DateTime.UtcNow,
             };
-            Bus.Send(saleCompleted);
+            Bus.Publish(saleCompleted);
         }
     }
 }

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NServiceBus;
 
 namespace Sales.Messages.Events
 {
-    public class SaleCompleted
+    public class SaleCompleted : IEvent
     {
         public int UserId { get; set; }
         public int ProductId { get; set; }

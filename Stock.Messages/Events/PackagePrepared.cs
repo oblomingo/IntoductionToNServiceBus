@@ -1,8 +1,9 @@
-﻿using Stock.Messages.Dto;
+﻿using NServiceBus;
+using Stock.Messages.Dto;
 
 namespace Stock.Messages.Events
 {
-    public class PackagePrepared
+    public class PackagePrepared : IEvent
     {
         public int OrderId { get; set; }
         public int PackageId { get; set; }
