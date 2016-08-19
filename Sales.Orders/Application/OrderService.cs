@@ -12,18 +12,15 @@ using Stock.Messages.Events;
 
 namespace Sales.Orders.Application
 {
-    public class OrderService : IHandleMessages<PlaceOrderCmd>, 
-        IHandleMessages<PackagePrepared>, 
-        IHandleMessages<OutOfStock>, 
-        IHandleMessages<PackageSent>
+    public class OrderService : IHandleMessages<PlaceOrderCmd>
     {
         private readonly ILog _log;
         private readonly OrderRepository _orderRepository;
+
         public OrderService()
         {
-            var guid = Guid.NewGuid();
             _orderRepository = new OrderRepository();
-            _log = LogManager.GetLogger(typeof(OrderService));
+            _log = LogManager.GetLogger(typeof (OrderService));
         }
 
         public IBus Bus { get; set; }
@@ -42,42 +39,44 @@ namespace Sales.Orders.Application
 
             Bus.Send(preparePackage);
         }
-
-        public void Handle(PackagePrepared message)
-        {
-            _orderRepository.ChangeOrderStatus(message.OrderId, (int)Enums.OrderStatuses.PackagePrepared);
-            var order = _orderRepository.GetOrderBy(message.OrderId);
-
-            if (order != null)
-            {
-                var sendPackage = new SendPackageCmd
-                {
-                    OrderId = message.OrderId,
-                    PackageId = message.PackageId,
-                    Size = message.Size,
-                    UserId = order.UserId
-                };
-                Bus.Send(sendPackage);
-            }
-        }
-
-        public void Handle(OutOfStock message)
-        {
-            _orderRepository.ChangeOrderStatus(message.OrderId, (int)Enums.OrderStatuses.OutOfStock);
-        }
-
-        public void Handle(PackageSent message)
-        {
-            _orderRepository.ChangeOrderStatus(message.OrderId, (int)Enums.OrderStatuses.Complete);
-
-            var order = _orderRepository.GetOrderBy(message.OrderId);
-            var saleCompleted = new SaleCompleted
-            {
-                UserId = order.UserId,
-                ProductId = order.ProductId,
-                Date = DateTime.UtcNow,
-            };
-            Bus.Publish(saleCompleted);
-        }
     }
 }
+
+//public void Handle(PackagePrepared message)
+//        {
+//            _orderRepository.ChangeOrderStatus(message.OrderId, (int)Enums.OrderStatuses.PackagePrepared);
+//            var order = _orderRepository.GetOrderBy(message.OrderId);
+
+//            if (order != null)
+//            {
+//                var sendPackage = new SendPackageCmd
+//                {
+//                    OrderId = message.OrderId,
+//                    PackageId = message.PackageId,
+//                    Size = message.Size,
+//                    UserId = order.UserId
+//                };
+//                Bus.Send(sendPackage);
+//            }
+//        }
+
+//        public void Handle(OutOfStock message)
+//        {
+//            _orderRepository.ChangeOrderStatus(message.OrderId, (int)Enums.OrderStatuses.OutOfStock);
+//        }
+
+//        public void Handle(PackageSent message)
+//        {
+//            _orderRepository.ChangeOrderStatus(message.OrderId, (int)Enums.OrderStatuses.Complete);
+
+//            var order = _orderRepository.GetOrderBy(message.OrderId);
+//            var saleCompleted = new SaleCompleted
+//            {
+//                UserId = order.UserId,
+//                ProductId = order.ProductId,
+//                Date = DateTime.UtcNow,
+//            };
+//            Bus.Publish(saleCompleted);
+//        }
+//    }
+//}
