@@ -2,12 +2,14 @@
 
 namespace Sales.Orders.Infrastructure
 {
+    /// <summary>
+    /// Fake order repository 
+    /// </summary>
     public class OrderRepository
     {
-        private int _id = 1;
         public int SaveOrder(int productId, int userId, int shippingTypeId)
         {
-            return _id;
+            return 1;
         }
 
         public void ChangeOrderStatus(int orderId, int orderStatus)
@@ -18,7 +20,10 @@ namespace Sales.Orders.Infrastructure
         public Order GetOrderBy(int orderId)
         {
             //Mock order objext
-            return new Order(orderId).ToUser(12).WithProduct(1).WithProduct(2);
+            return new Order(orderId)
+                .ToUser(12)
+                .WithProduct(1)
+                .Using((int)Enums.ShippingType.Priority);
         }
     }
 }

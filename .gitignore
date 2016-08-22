@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/WebApp/App_Data/nsb_log_2016-08-21_0.txt
